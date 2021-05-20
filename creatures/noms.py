@@ -1,5 +1,5 @@
 """
-Ce module a pour fonction de nommer aléatoirement les sessions d'évolution avec des noms pseudo-latins à peu près prononçables.
+Ce module a pour fonction de nommer aléatoirement les sessions d'évolution avec des noms français ou pseudo-latins à peu près prononçables.
 """
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
