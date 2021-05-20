@@ -149,7 +149,6 @@ if __name__ == "__main__":
                 action="store_true", help="Plein écran")
     analyseur.add_option("-L", "--log", dest="log", default=None,
             help="Logger toutes les données pour du debugging", action="store_true")
-    (options, args) = analyseur.parse_args()
     analyseur.add_option("-v", "--verbose", dest="verbose", default=False,
             help="Sortie bavarde", action="store_true")
     analyseur.add_option("-b", "--best", dest="best", default=False,
@@ -164,6 +163,7 @@ if __name__ == "__main__":
             help="itération de départ", metavar="ITERATION")
     analyseur.add_option("-i", "--id", dest="id", default=None,
             help="Donner un identifiant à l'espèce", metavar="IDENTIFIER")
+    (options, args) = analyseur.parse_args()
 
 
     if not HAS_PYGAME:
