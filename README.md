@@ -12,7 +12,7 @@ Algorithme génétique permettant de faire évoluer l'anatomie de créatures bid
 #Générer une population aléatoire standard de 100 individus et la stocker dans randompop.xml
 $ python ./population_aleatoire.py  randompop.xml -p 100
 
-#Faire évoluer cette population
+#Faire évoluer cette population (Ctrl+C pour interrompre)
 $ python ./evolution.py randompop.xml -v -id outputpop
 
 #Afficher chaque créature de la population créée pendant 1000 cycles
