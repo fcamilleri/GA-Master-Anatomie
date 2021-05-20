@@ -21,3 +21,5 @@ $ python ./visualisation.py ./data/outputpop.xml -t 1000
 #Afficher les paramètres disponibles
 $ python ./evolution.py --help
 ```
+
+Concrètement en vidéo: https://youtu.be/Kt2dmJf2BBQ
