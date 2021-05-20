@@ -1,0 +1,1 @@
+C'est dans ce dossier que sont créées les créatures et les différentes données interprétables.
