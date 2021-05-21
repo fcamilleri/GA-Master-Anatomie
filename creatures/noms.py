@@ -1,5 +1,5 @@
 """
-Ce module a pour fonction de nommer aléatoirement les sessions d'évolution avec des noms français ou pseudo-latins à peu près prononçables.
+Ce module a pour fonction de nommer aléatoirement les sessions d'évolution avec des noms françasi ou pseudo-latins à peu près prononçables.
 """
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -8,8 +8,6 @@ from random import choice
 from random import randrange
 import io
     
-
-
 def nomFrancais(opt):        
     if opt == 0:
        prenoms = open("./creatures/dictionnaire_prenoms.txt", 'r', encoding='utf-8').readlines()

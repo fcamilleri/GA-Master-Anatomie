@@ -22,6 +22,15 @@ except ImportError:
 bg = pygame.image.load('images/parking_externes_CBRS.jpg')
 bgSize = bg.get_rect().size
 
+def aVirgule(s):
+    # teste si la variable est à virgule flottante
+    if s.isdigit() or s == '.': return False
+    spl = s.split('.')
+    if len(spl) > 2: return False
+    for p in spl:
+        if p and not p.isdigit(): return False
+    return True
+
 class Creature(object):
     """
     Une créature est construite avec des noeuds qui correspondent à des masses ponctuelles, connectées par des segments qui lient ces
@@ -346,15 +355,6 @@ def sauvegarder_xml(creatures, fichierSortie=sys.stdout):
         fichierSortie.close()
     else:
         fichierSortie.flush()
-
-def aVirgule(s):
-    # teste si la variable est à virgule flottante
-    if s.isdigit() or s == '.': return False
-    spl = s.split('.')
-    if len(spl) > 2: return False
-    for p in spl:
-        if p and not p.isdigit(): return False
-    return True
 
 def charger_xml(arq=sys.stdin, limite=None):
     # lit un ficher et le transforme en créature

@@ -1,5 +1,7 @@
 """
 Ce module implémente la classe Vecteur. Permet de simplifier les opérations vectorielles comme le produit scalaire, l'addition, la projection et le calcul d'angle.
+
+Une grande partie de ces fonctions est tirée d'un tutoriel sur le site Python.org.
 """
 
 import math

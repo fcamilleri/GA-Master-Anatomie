@@ -14,8 +14,8 @@ if __name__ == "__main__":
 
     # Lecture des paramères de la ligne de commande
     analyseur = optparse.OptionParser(description="Générer une espece XML aléatoire")
-    analyseur.add_option("-p", "--espece", dest="espece", default=1,
-            help="Taille de la espece", metavar="NUMBER")
+    analyseur.add_option("-p", "--population", dest="espece", default=1,
+            help="Taille de la population", metavar="NUMBER")
     analyseur.add_option("-n", "--articulations", dest="articulations_num", default=10,
             help="Nombre de noeuds (articulations)", metavar="NUMBER")
     analyseur.add_option("-s", "--segments", dest="segments_num", default=30,

@@ -5,21 +5,21 @@ définis ici.
 
 # Constantes physiques
 
-# Accélération de la pesenteur appliquée à tous les noeuds
+# Accélération de la pesanteur appliquée à tous les noeuds
 PESANTEUR = (0,0.3)
 # Vitesse de changement de phase: modifie la fréquence des mouvements
 INCREMENT_ANGLE = 0.025
-# Pourcentage de la vélocité perdue à chaque étape de la simulation
-RESISTANCE_AIR = 0.01
 # Paramètre qui détermine la force de chaque segment
 ELASTICITE = 0.6
-# Entraîne une poussée d'Archimède (négligeable, peut-être le désactiverai-je)
+# La prise en compte de la viscosité est déactivée en pratique.
 VISCOSITE = 0.05
 # Masses des noeuds/articulations
 POIDS_NOEUD = 1.26
 # Rayon d'une articulation
 RAYON = 8
 MAX_NORMAL = 400.0
+# Conditionne la vélocité perdue à chaque étape de la simulation (désactivé)
+RESISTANCE_AIR = 0.01 # désactivé
 # Code pour orientation:
 HAUT      = 1
 BAS    = 2
@@ -68,7 +68,7 @@ class Articulation(object):
             self.vel.y = self.vel.y * - atr_normal if abs(self.vel.y * - atr_normal) > min_vel else 0.0
             force_collision = abs(self.vel.y)
         elif cote not in [HAUT, GAUCHE, DROITE, BAS]:
-            raise ValueError("cote must be HAUT, GAUCHE, DROITE or BAS.")
+            raise ValueError("cote doit être HAUT, GAUCHE, DROITE ou BAS.")
 
         return force_collision
         
@@ -111,11 +111,11 @@ class Segment(object):
 
     def __init__(self, a, b, amplitude=0, decalage=pi, normal=None):
         # Initialisation d'un segment qui connecte les articulations A et B, avec une amplitude, un décalage et une longueur normale
-        self.a = a
         self.b = b
+        self.a = a
         self.normal = min(sqrt(sum((a.pos-b.pos)**2)) if normal is None else normal, MAX_NORMAL)
-        self.amplitude = amplitude
         self.decalage = decalage
+        self.amplitude = amplitude
 
     def maj(self, elast=0.5, ang=None, visc=0):
         # Met à jour un segment en appliquant les forces environnantes.
@@ -124,13 +124,16 @@ class Segment(object):
             ang = 0
             
         diff = (self.a.pos + self.a.vel) - (self.b.pos + self.b.vel)
+        # on calcule la distance
         dis = sqrt(sum(diff**2))
         N = self.normal + (sin(ang+self.decalage) * ampl * self.normal)
         
+        # on met à jour l'accélération
         if dis != 0:
             self.a.acc += diff/dis * (N-dis) * (1.0-elast) * 0.5
             self.b.acc -= diff/dis * (N-dis) * (1.0-elast) * 0.5
             
+        # le code ci-dessous ne sert plus à rien actuellement
         if visc > 0:
             vnormal = (self.a.pos - self.b.pos).perpendiculaire()
             if vnormal.length() > 0:

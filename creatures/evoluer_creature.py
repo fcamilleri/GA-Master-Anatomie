@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Module qui permet l'évolution d'une créature. Implémente des opérateurs génétiques comme la mutation et les croisements
+Module qui permet l'évolution d'une créature. Implémente des opérateurs génétiques comme la mutation 
 """
 
 from .creature import Creature
@@ -45,79 +45,8 @@ class Evoluercreature(Creature):
         # Ajoute une nouvelle lignée
         self['lignee'] += hex(parent._lignee_compte)[2:] + SEPARATEUR
         parent._lignee_compte += 1
-
-    def crossover(self, autre):
-        # Croise deux créatures
-        global _lignee_compte
-
-        # Créer nouvelle créature
-        croisement = Evoluercreature()
-
-        #  Croiser les infos
-        for key in self:
-            croisement[key] = self[key]
-
-        croisement['adaptation'] = 0
-        croisement['name'] = ' '.join(set(self['name'].split() + autre['name'].split()))
-        croisement['adapted'] = "random"
-
-        # Sélectionner la lignée
-        try:
-            croisement['lignee'] += 'X' + \
-                autre['lignee'].split(SEPARATEUR)[0] + '...' + autre['lignee'].split(SEPARATEUR)[-2] + \
-                SEPARATEUR
-        except KeyError:
-            pass
-
-        # Pour chaque segment on moyenne
-        for segmentA, segmentB in zip(self.segments + ([None] * ((len(autre.segments)-len(self.segments))//2)),
-                                    autre.segments + ([None] * ((len(self.segments)-len(autre.segments))//2))):
-
-            if segmentA is None: segmentA = segmentB
-            elif segmentB is None: segmentB = segmentA
-
-            # Selectionner segment
-            segment = choice([segmentA,segmentB])
-
-            # Selectionner articulation A
-            articulationA = croisement.getArticulation(segment.a.id)
-            if articulationA is None:
-                articulationA = choice([self,autre]).getArticulation(segment.a.id)
-                if articulationA is None: articulationA = segment.a
-
-                # Créer articulation A
-                new_articulationA = Articulation(articulationA.pos, articulationA.vel, articulationA.acc)
-                new_articulationA.id = articulationA.id
-                articulationA = new_articulationA
-
-                # Ajouter articulation A
-                croisement.add(articulationA)
-
-            # Sélectionner articulation B
-            articulationB = croisement.getArticulation(segment.b.id)
-            if articulationB is None:
-                articulationB = choice([self,autre]).getArticulation(segment.b.id)
-                if articulationB is None: articulationB = segment.b
-
-                # Créer articulation B
-                new_articulationB = Articulation(articulationB.pos, articulationB.vel, articulationB.acc)
-                new_articulationB.id = articulationB.id
-                articulationB = new_articulationB
-
-                # Ajoutter articulation B
-                croisement.add(articulationB)
-
-            # Ajouter segment créé
-            croisement.add(Segment(articulationA, articulationB, segment.amplitude,
-                             segment.decalage, segment.normal))
-
-        # Retirer les éléments flottants
-        croisement.retirerFlottantes()
-
-        # Retourner le nouvel individu
-        return croisement
-
-    def mutate(self, newarticulationdist=100, articulationvariation=10):
+    
+    def mutation(self, newarticulationdist=100, articulationvariation=10):
         # Mute une structure de la créature, ce qui peut correspondre à: rajouter ou retirer un segment ou une articulation, modifier un segment ou modifier la position d'un noeud.
        
         if len(self.articulations) == 0:

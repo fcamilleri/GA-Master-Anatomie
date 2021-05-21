@@ -25,7 +25,7 @@ except ImportError:
 def cmp(a, b):
     return (a > b) - (a < b)
 
-def evolution_serialisee(espece, adaptation=adaptation.run, save_frequency=100,
+def evolution_serialisee(espece, adaptation=adaptation.run, save_frequency=10000,
         limite=-1,verbose=False, gfx=False, log=None, discard_fraction=0.6, random_include=0,
         best=False, start_itration = 1, id='', timer=0,path="", index=0):
 
@@ -35,12 +35,6 @@ def evolution_serialisee(espece, adaptation=adaptation.run, save_frequency=100,
     """
     Execute l'algorithme génétique et sauvegarde les résultats toutes les n générations
     """
-    
-    # On commence par tester la validité des paramètres
-    if discard_fraction < 0 or random_include < 0:
-        raise ValueError("discard_fraction and random_include must both range from 0 to 1")
-    elif discard_fraction + random_include > 1:
-        raise ValueError("the sum of discard_fraction and random_include must not be greater than 1")
 
     itr = start_itration # Première itération
 
@@ -84,7 +78,7 @@ def evolution_serialisee(espece, adaptation=adaptation.run, save_frequency=100,
 
             # On clone et on mute ceux qui restent
             for specimen in sample(espece, removed):
-                enfant = Evoluercreature(specimen).mutate()
+                enfant = Evoluercreature(specimen).mutation()
                 enfant.nouvelleLignee(specimen)
 
                 names = enfant['name'].split()
