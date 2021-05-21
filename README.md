@@ -1,6 +1,6 @@
 # Projet pour Master Anatomie-Morphogénèse-Imagerie
 
-Algorithme génétique permettant de faire évoluer l'anatomie de créatures bidimensionnelles pour la marche.
+Algorithme génétique permettant de faire évoluer l'anatomie de créatures bidimensionnelles pour la locomotion terrestre.
 
 ## Dépendences
 - Python3.9.5 (https://www.python.org/downloads/)
