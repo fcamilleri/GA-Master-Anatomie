@@ -2,8 +2,7 @@
 
 Algorithme génétique permettant de faire évoluer l'anatomie de créatures bidimensionnelles pour la locomotion terrestre.
 
-
-![image animée](./images/parking_externes_CBRS.jpg)
+![](./images/main.gif)
 
 https://youtu.be/hnpN3FTBWZs
 
