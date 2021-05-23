@@ -101,7 +101,7 @@ def evolution_serialisee(espece, adaptation=adaptation.run, save_frequency=10000
                 sauvegarder_xml(espece, filename)
 
                 if verbose:
-                    print("# itration %d saved into %s" % (itr, filename))
+                    print("# itération %d sauvegardée dans %s" % (itr, filename))
 
             # On sauvegarde le meilleur individu si spécifié
             if best:
