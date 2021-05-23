@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Fait évoluer les créatures de manière sérialisée: une créature après l'autre.
+Fait évoluer une population sur la base d'une population de départ, soit aléatoire soit issue d'une précédente évolution.
 """
 
 from creatures.creature import sauvegarder_xml, charger_xml

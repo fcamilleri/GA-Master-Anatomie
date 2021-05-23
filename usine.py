@@ -9,7 +9,7 @@ Cela permet de mettre "en concurrence" différentes espèces et de se débarrass
 """
 import time
 import evolution
-import population_aleatoire
+import pop_aleatoire
 from creatures import adaptation
 from creatures.creature import sauvegarder_xml, charger_xml
 from creatures.noms import nomFrancais, pseudoNomLatin
@@ -36,7 +36,7 @@ def getSeed(name,generation,idx):
 
 # Obtention de l'espèce aléatoire et sauvegarde dans un fichier XML
 def randomBot(seed):
-    os.system("python ./population_aleatoire.py -p "+str(pop)+" -r "+str(rad)+" \""+seed+"\"")
+    os.system("python ./pop_aleatoire.py -p "+str(pop)+" -r "+str(rad)+" \""+seed+"\"")
 
 
 if __name__ == "__main__":
