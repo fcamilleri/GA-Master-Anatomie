@@ -2,6 +2,13 @@
 
 Algorithme génétique permettant de faire évoluer l'anatomie de créatures bidimensionnelles pour la locomotion terrestre.
 
+
+
+
+https://youtu.be/hnpN3FTBWZs
+
+
+
 ## Dépendences
 - Python3.9.5 (https://www.python.org/downloads/)
 - Pygame (https://www.pygame.org/wiki/GettingStarted)
