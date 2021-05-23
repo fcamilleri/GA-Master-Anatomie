@@ -3,7 +3,7 @@
 Algorithme génétique permettant de faire évoluer l'anatomie de créatures bidimensionnelles pour la locomotion terrestre.
 
 
-![alt text](https://github.com/fcamilleri/GA-Master-Anatomie/blob/main/images/teaser.gif)
+![alt text](https://github.com/fcamilleri/GA-Master-Anatomie/raw/main/images/teaser.gif)
 
 https://youtu.be/hnpN3FTBWZs
 
