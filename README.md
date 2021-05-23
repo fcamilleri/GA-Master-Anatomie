@@ -1,4 +1,4 @@
-# Projet pour Master Anatomie-Morphogénèse-Imagerie
+# Projet pour Master d'Anatomie-Morphogénèse-Imagerie
 
 Algorithme génétique permettant de faire évoluer l'anatomie de créatures bidimensionnelles pour la locomotion terrestre.
 
