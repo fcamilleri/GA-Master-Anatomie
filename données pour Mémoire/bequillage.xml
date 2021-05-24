@@ -1,0 +1,134 @@
+<creatures>
+	<creature name="LAFLECHE Marie-Lou (Ofia)" angle="42525.000001353306" fitness="2311.81106903307" bloodline="17:4:1:0:1:0:0:0:1:0:2:2:0:5:4:5:1:3:2:10:3:3:1c:3:0:2:0:4:0:5:3:2:8:7:d:21:4:b:3:7:7:4:0:0:4:e:6:1:0:8:d:d:3:2:5:3:2:6:1:e:6:3:f:9:5:0:1:6:8:6:10:a:1:a:0:8:14:9:5:5:0:3:4:10:5:e:0:5:9:1:4:a:8:a:7:2:0:a:f:1:d:11:2:1e:13:8:4:1:e:1:9:6:" adapted="walk" >
+		<articulation pos="-14,162" id="S0N1" />
+		<articulation pos="297,8" id="S0N4" />
+		<articulation pos="-240,31" id="S0N5" />
+		<articulation pos="5,8" id="S0N6" />
+		<articulation pos="-122,49" id="S0N7" />
+		<articulation pos="-296,110" id="S0N9" />
+		<segment from="S0N6" to="S0N5" decalage="4.959" amplitude="0.008" normal="242.033" />
+		<segment from="S0N4" to="S0N5" decalage="3.806" amplitude="-0.484" normal="382.444" />
+		<segment from="S0N4" to="S0N6" decalage="2.868" amplitude="-0.499" normal="275.748" />
+		<segment from="S0N7" to="S0N6" decalage="3.810" amplitude="0.215" normal="164.784" />
+		<segment from="S0N7" to="S0N5" decalage="1.325" amplitude="-0.438" normal="236.395" />
+		<segment from="S0N7" to="S0N9" decalage="3.645" amplitude="-0.399" normal="131.847" />
+		<segment from="S0N5" to="S0N9" decalage="5.037" amplitude="-0.291" normal="90.001" />
+		<segment from="S0N1" to="S0N6" decalage="5.131" amplitude="0.496" normal="246.947" />
+	</creature>
+	<creature name="COGNAC Harun (Grem)" angle="63825.00000259313" fitness="2283.512463127448" bloodline="15:6:2:c:1:0:0:1:3:1:2:2:5:0:0:0:2:2:1:0:0:5:3:1:0:3:4:6:2:1:3:f:7:4:2:0:3:0:2:2:4:a:5:4:9:16:0:0:0:d:5:0:14:4:12:2:1:3:0:5:6:e:9:10:c:0:16:a:2:9:e:6:41:1a:13:13:12:0:b:0:9:44:2:1c:1:0:d:b:17:c:0:5:14:5:7:20:c:1a:9:57:2:4:10:c:7:16:2:4:9:0:8:0:19:2:0:11:f:7:" adapted="walk" >
+		<articulation pos="21,8" id="S0N2" />
+		<articulation pos="-137,222" id="S0N3" />
+		<articulation pos="131,65" id="S0N5" />
+		<articulation pos="-120,221" id="S0N6" />
+		<articulation pos="138,183" id="S0N7" />
+		<articulation pos="120,222" id="S0N8" />
+		<articulation pos="59,193" id="S0N10" />
+		<articulation pos="-16,36" id="S0N12" />
+		<segment from="S0N6" to="S0N2" decalage="3.088" amplitude="0.463" normal="293.412" />
+		<segment from="S0N7" to="S0N5" decalage="3.634" amplitude="-0.136" normal="104.970" />
+		<segment from="S0N8" to="S0N2" decalage="1.267" amplitude="0.391" normal="176.729" />
+		<segment from="S0N10" to="S0N7" decalage="4.356" amplitude="0.338" normal="121.204" />
+		<segment from="S0N5" to="S0N3" decalage="5.506" amplitude="0.437" normal="400.000" />
+		<segment from="S0N10" to="S0N5" decalage="5.927" amplitude="-0.357" normal="137.154" />
+		<segment from="S0N5" to="S0N2" normal="113.287" />
+		<segment from="S0N10" to="S0N2" decalage="2.017" amplitude="0.081" normal="182.109" />
+		<segment from="S0N3" to="S0N8" decalage="3.490" amplitude="0.376" normal="319.155" />
+		<segment from="S0N10" to="S0N6" decalage="1.587" amplitude="0.211" normal="144.409" />
+		<segment from="S0N2" to="S0N12" decalage="0.410" amplitude="-0.034" normal="43.497" />
+	</creature>
+	<creature name="SYNNOTT Israa (Sem)" angle="54875.00000207217" fitness="1996.796001367046" bloodline="c:1:3:6:0:1:1:1:2:0:1:1:3:2:1:0:4:4:13:4:8:2:9:1:1:6:6:1:2:0:c:1:3:0:2:5:1:6:1:0:0:4:0:0:4:0:1:1:0:5:3:4:0:1:4:a:3:f:1:6:a:1:5:6:6:1:0:1:1:1:0:7:6:e:9:3:5:0:0:0:6:2:1:4:5:10:1:3:3:4:1:4:5:3:1:11:7:1:0:5:5:3:6:1:4:9:12:c:2:3:f:1:4:0:2:6:2:2:2:1:1:4:0:0:12:f:2:4:b:4:5:2:0:c:0:1:12:3:0:6:6:7:3:b:2:2:1:1:3:9:0:19:24:8:4:f:1:3:23:e:7:17:2:4:0:33:8:" adapted="walk" >
+		<articulation pos="-44,72" id="S0N1" />
+		<articulation pos="48,27" id="S0N2" />
+		<articulation pos="126,126" id="S0N3" />
+		<articulation pos="-96,176" id="S0N4" />
+		<articulation pos="-156,164" id="S0N6" />
+		<articulation pos="-78,8" id="S0N8" />
+		<articulation pos="-158,172" id="S0N10" />
+		<articulation pos="159,176" id="S0N11" />
+		<articulation pos="88,110" id="S0N12" />
+		<articulation pos="7,176" id="S0N15" />
+		<segment from="S0N2" to="S0N4" decalage="5.367" amplitude="-0.487" normal="239.128" />
+		<segment from="S0N4" to="S0N8" decalage="5.457" amplitude="0.312" normal="172.409" />
+		<segment from="S0N2" to="S0N1" decalage="0.880" amplitude="0.466" normal="172.764" />
+		<segment from="S0N6" to="S0N2" decalage="3.635" amplitude="-0.391" normal="393.935" />
+		<segment from="S0N6" to="S0N1" decalage="0.000" amplitude="0.361" normal="183.030" />
+		<segment from="S0N3" to="S0N8" decalage="5.397" amplitude="0.450" normal="225.942" />
+		<segment from="S0N4" to="S0N3" decalage="6.029" amplitude="0.398" normal="266.190" />
+		<segment from="S0N1" to="S0N8" decalage="3.681" amplitude="-0.459" normal="119.239" />
+		<segment from="S0N3" to="S0N11" decalage="1.332" amplitude="-0.227" normal="52.097" />
+		<segment from="S0N3" to="S0N15" decalage="4.180" amplitude="0.391" normal="101.439" />
+		<segment from="S0N11" to="S0N15" decalage="3.142" amplitude="-0.041" normal="150.223" />
+		<segment from="S0N6" to="S0N10" decalage="0.755" amplitude="0.348" />
+		<segment from="S0N2" to="S0N12" decalage="8.493" amplitude="-0.449" normal="83.102" />
+	</creature>
+	<creature name="ARCAND Fabiola (Arso)" angle="49625.00000176658" fitness="1519.0926858464834" bloodline="7:0:1:1:0:0:2:2:0:2:3:0:0:0:0:3:1:7:0:7:7:0:b:7:13:1:4:c:1:0:0:2:3:15:3:2:4:18:9:5:3:5:1:b:5:14:0:6:e:0:3:0:2:4:8:0:a:2:1:0:4:4:8:0:0:0:5:0:a:16:0:0:16:1:7:0:15:26:1:13:10:3:a:2:c:2e:2:d:5:7:17:1c:3:4:1:2:3:2:2:11:a:0:c:7:1:b:3:4:5:d:b:1:4:3:0:a:12:4:4:10:6:9:" adapted="walk" >
+		<articulation pos="70,180" id="S0N2" />
+		<articulation pos="14,8" id="S0N3" />
+		<articulation pos="52,121" id="S0N4" />
+		<articulation pos="190,207" id="S0N6" />
+		<articulation pos="-107,209" id="S0N7" />
+		<articulation pos="-5,162" id="S0N8" />
+		<articulation pos="-188,106" id="S0N10" />
+		<articulation pos="-148,192" id="S0N12" />
+		<articulation pos="-146,190" id="S0N14" />
+		<segment from="S0N2" to="S0N4" decalage="1.979" amplitude="-0.286" normal="68.953" />
+		<segment from="S0N8" to="S0N3" decalage="2.435" amplitude="0.348" normal="134.197" />
+		<segment from="S0N10" to="S0N4" decalage="5.234" amplitude="-0.380" normal="198.087" />
+		<segment from="S0N7" to="S0N3" decalage="3.182" amplitude="-0.214" normal="237.034" />
+		<segment from="S0N6" to="S0N3" decalage="0.862" amplitude="0.285" normal="219.237" />
+		<segment from="S0N7" to="S0N8" decalage="3.123" amplitude="0.175" normal="117.690" />
+		<segment from="S0N6" to="S0N7" decalage="2.171" amplitude="0.432" normal="231.106" />
+		<segment from="S0N10" to="S0N2" decalage="6.389" amplitude="0.305" normal="242.512" />
+		<segment from="S0N8" to="S0N6" decalage="2.583" amplitude="-0.438" normal="222.587" />
+		<segment from="S0N4" to="S0N3" decalage="0.239" amplitude="0.406" normal="85.428" />
+		<segment from="S0N10" to="S0N3" decalage="1.679" amplitude="0.283" normal="170.760" />
+		<segment from="S0N4" to="S0N7" decalage="1.779" amplitude="-0.389" normal="265.859" />
+		<segment from="S0N4" to="S0N6" normal="164.174" />
+		<segment from="S0N10" to="S0N14" decalage="5.690" amplitude="-0.175" normal="87.457" />
+		<segment from="S0N10" to="S0N12" decalage="4.700" amplitude="-0.173" normal="80.100" />
+	</creature>
+	<creature name="OHEARN Olaf (Iabum)" angle="26100.00000039725" fitness="3891.840741194032" bloodline="3f:0:4:2:0:2:4:1:0:3:1:6:0:5:0:7:8:0:0:3:0:6:1:0:2:2:4:0:0:0:1:1:1:1:0:a:3:0:4:2:2:c:2:1:1:2:1:1:10:0:5:3:6:a:3:1:1:5:1:1:2:0:1a:1:3:6:1b:1f:d:a:9:0:1f:5:1b:2e:" adapted="walk" >
+		<articulation pos="110,152" id="S0N1" />
+		<articulation pos="160,182" id="S0N2" />
+		<articulation pos="-35,86" id="S0N3" />
+		<articulation pos="-88,187" id="S0N5" />
+		<articulation pos="-236,191" id="S0N6" />
+		<articulation pos="149,8" id="S0N7" />
+		<articulation pos="170,180" id="S0N10" />
+		<articulation pos="203,73" id="S0N11" />
+		<articulation pos="237,93" id="S0N12" />
+		<segment from="S0N5" to="S0N2" decalage="1.908" amplitude="-0.362" normal="391.285" />
+		<segment from="S0N3" to="S0N7" decalage="2.181" amplitude="-0.032" normal="228.915" />
+		<segment from="S0N1" to="S0N5" decalage="0.938" amplitude="0.338" normal="172.827" />
+		<segment from="S0N6" to="S0N2" decalage="1.390" amplitude="0.314" normal="307.217" />
+		<segment from="S0N1" to="S0N3" decalage="2.101" amplitude="-0.314" normal="238.350" />
+		<segment from="S0N5" to="S0N7" decalage="0.000" amplitude="-0.472" normal="250.273" />
+		<segment from="S0N2" to="S0N3" decalage="2.433" amplitude="-0.201" normal="279.220" />
+		<segment from="S0N1" to="S0N7" decalage="1.633" amplitude="-0.496" normal="253.765" />
+		<segment from="S0N5" to="S0N3" decalage="6.214" amplitude="-0.249" normal="101.303" />
+		<segment from="S0N6" to="S0N3" decalage="0.414" amplitude="0.399" normal="230.437" />
+		<segment from="S0N1" to="S0N10" normal="62.703" />
+		<segment from="S0N7" to="S0N11" decalage="2.795" amplitude="-0.083" normal="108.308" />
+		<segment from="S0N11" to="S0N1" normal="140.853" />
+		<segment from="S0N7" to="S0N10" normal="170.936" />
+		<segment from="S0N3" to="S0N11" normal="208.517" />
+		<segment from="S0N7" to="S0N12" />
+	</creature>
+	<creature name="ROMPRÉ Marie-Julie (Gro)" angle="6224.999999979537" fitness="1852.3539545767158" bloodline="f:2:0:3:1:0:1:2:0:0:0:2:0:2:0:0:2:7:1:1:0:2:1:15:7:1:3:10:1:4:3:" adapted="walk" >
+		<articulation pos="149,211" id="S0N1" />
+		<articulation pos="150,60" id="S0N2" />
+		<articulation pos="-149,232" id="S0N3" />
+		<articulation pos="89,8" id="S0N4" />
+		<articulation pos="137,106" id="S0N6" />
+		<articulation pos="-18,175" id="S0N7" />
+		<segment from="S0N7" to="S0N2" decalage="3.215" amplitude="-0.019" normal="206.569" />
+		<segment from="S0N6" to="S0N7" decalage="2.548" amplitude="0.109" normal="154.486" />
+		<segment from="S0N2" to="S0N4" decalage="0.719" amplitude="0.428" normal="130.757" />
+		<segment from="S0N6" to="S0N1" decalage="1.658" amplitude="0.290" normal="106.775" />
+		<segment from="S0N3" to="S0N7" decalage="2.231" amplitude="-0.482" normal="146.064" />
+		<segment from="S0N1" to="S0N2" decalage="3.314" amplitude="-0.273" normal="211.041" />
+		<segment from="S0N7" to="S0N4" decalage="3.464" amplitude="-0.275" normal="240.285" />
+		<segment from="S0N3" to="S0N4" decalage="2.924" amplitude="0.486" normal="244.225" />
+		<segment from="S0N7" to="S0N1" decalage="0.838" amplitude="-0.366" normal="128.550" />
+	</creature>
+</creatures>
