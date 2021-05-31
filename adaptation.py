@@ -1,0 +1,36 @@
+"""
+Teste l'aptitutde d'une créature à courir sur une distance importante en un temps donné.
+"""
+
+# On importe le moteur physique
+from . import physique
+from math import sqrt
+import pygame
+
+def course(creature, largeur, hauteur, enable_graphics=False, simulation_time=1000):
+    # se base sur la vitesse à laquelle se déplace le centre de gravité de la créature pour mesurer sa performance
+    creature['adaptee'] = 'course'
+    # Centrer la créature et la faire toucher le sol
+    if len(creature['lignee'].split('.')) == 1:
+        creature.centreSol(hauteur)
+    # Sélectionner son centre de gravité
+    start_x, start_y = creature.centreGravite()
+    if enable_graphics:
+        tictac = 0
+        screen = pygame.display.get_surface()
+    # Débuter la simulation
+    for i in range(simulation_time):
+        if enable_graphics:
+            creature.dessiner(screen, tictac, suivi_x=True, extrainfo="evolue pour la course")
+            pygame.display.flip()   # Affichage
+            tictac += 1
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT or \
+                (event.type == pygame.KEYDOWN and event.key == 27):
+                    raise KeyboardInterrupt
+        creature.maj()
+        creature.collisionMur(hauteur, physique.BAS)
+    # Resélectionner son centre de masse
+    end_x, end_y = creature.centreGravite()
+    # Retourne la distance parcourue
+    return abs(end_x - start_x)                                                           
