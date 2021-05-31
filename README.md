@@ -23,9 +23,6 @@ $ python ./evolution.py randompop.xml -v -id outputpop
 
 #Afficher chaque créature de la population créée pendant 1000 cycles
 $ python ./vue.py ./data/outputpop.xml -t 1000
-
-#Afficher les paramètres disponibles
-$ python ./evolution.py --help
 ```
 
 Tutoriel vidéo: https://youtu.be/Kt2dmJf2BBQ
