@@ -4,7 +4,7 @@ Algorithme génétique permettant de faire évoluer l'anatomie de créatures bid
 
 ![](./images/main.gif)
 
-https://youtu.be/hnpN3FTBWZs
+https://youtu.be/hnpN3FTBWZs (toutes nos vidéos sont non-référencées)
 
 
 
