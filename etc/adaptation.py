@@ -3,9 +3,8 @@ Teste l'aptitutde d'une créature à courir sur une distance importante en un te
 """
 
 # On importe le moteur physique
-from .vecteur import Vecteur
-from math import sqrt
 from . import physique
+from math import sqrt
 
 try:
     import pygame

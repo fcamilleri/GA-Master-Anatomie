@@ -7,14 +7,10 @@ Il existe un temps d'expiration de chaque instance. Les résultats de toutes les
 et les k espèces les moins performantes sont supprimées et remplacées par des especes aléatoires.
 Cela permet de mettre "en concurrence" différentes espèces et de se débarrasser des convergences prématurées.
 """
-import time
-import evolution
-import pop_aleatoire
 from etc import adaptation
 from etc.creature import sauvegarder_xml, charger_xml
 from etc.noms import nomFrancais, pseudoNomLatin
-import optparse
-import os
+import optparse, os, time, evolution, pop_aleatoire
 import multiprocessing as mp
 n = 12 #        nombre d'instances en parallèle
 k = 3 #         pression de sélection < n

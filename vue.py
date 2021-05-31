@@ -8,9 +8,7 @@ LARGEUR, HAUTEUR = 1080,1080
 from etc.physique import *
 from etc.creature import charger_xml
 from etc.evoluer_creature import creature_aleatoire
-import sys, pygame, optparse, os
-import random
-import time
+import sys, pygame, optparse, os, random, time
 
 if __name__ == "__main__":
     # Lecture de la ligne de commande

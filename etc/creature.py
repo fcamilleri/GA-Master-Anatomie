@@ -21,7 +21,7 @@ class Creature(object):
     Une créature est construite avec des noeuds qui correspondent à des masses ponctuelles, connectées par des segments qui lient ces
     noeuds et peuvent se contracter. Chaque segment dispose d'un cycle composé de contractions et distensions.
     """
-    def __init__(self, parent=None, name="Anonyme", angleDepart=0):
+    def __init__(self, parent=None, name="Inconnue au bataillon", angleDepart=0):
         """
         Créer une créature de novo ou qui descend d'un parent
         """
@@ -59,7 +59,7 @@ class Creature(object):
     def __iter__(self):
         #itération entre des _information
         return self._information.__iter__()
-    def maj(self, atr=RESISTANCE_AIR, grav=PESANTEUR, elast=ELASTICITE, visc=0, moving=True):
+    def maj(self, atr=0.01, grav=PESANTEUR, elast=0.6, visc=0, moving=True):
         #mise à jour de l'état de la créature
         for articulation in self.articulations:
             articulation.maj(atr, grav, elast)
@@ -216,7 +216,7 @@ class Creature(object):
                 pygame.draw.rect(screen, backgroundcolor,
                                  (int(x - bxp) % (taille_x+largeur) - taille_x, int(y - byp) % (taille_y+hauteur) - taille_y,
                                   taille_x-10,taille_y-10))               
-        #montrer l'arrière plan
+        # Montrer l'arrière plan
         screen.blit(bg, (int(x - bxp) % (largeur+taille_x) - taille_x - bgSize[0], 0))
         screen.blit(bg, (int(x - bxp) % (largeur+taille_x) - taille_x, 0))
         # Dessiner les segments
@@ -240,18 +240,12 @@ class Creature(object):
         velx //= len(self.articulations)
         vely //= len(self.articulations)
         if montrerTexte:
-            # Rendu de la créature et des infos
-            texteNom = font.render("%s%s" % (self['name'], ": " + extrainfo if extrainfo else "."), False, (255,255,255))
-            texteVitesse = font.render("vitesse: %.2f m/c" % (sqrt(velx**2 + vely**2)), False, (255,255,255))
-            screen.blit(texteNom, (5,5))
-            #screen.blit(texteVitesse, (5,20))
-            #if tictac:
-            #tickstext = font.render("horloge: %d c" % (tictac), False, (255,255,255))
-            #screen.blit(tickstext, (5,35))
+            # Rendu du nom de la créature
+            texteNom = font.render("%s%s" % (self['name'], "" + extrainfo if extrainfo else "."), False, (200,200,200))           
+            screen.blit(texteNom, (100,100))
 try:
-    import os
+    import os, pygame
     os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
-    import pygame
     HAS_PYGAME = True
     # charger le fond d'écran une fois
     bg = pygame.image.load('images/parking_externes_CBRS.jpg')

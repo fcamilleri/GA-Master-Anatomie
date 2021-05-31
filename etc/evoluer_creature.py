@@ -7,9 +7,8 @@ Module qui permet l'évolution d'une créature. Implémente des opérateurs gén
 
 from .creature import Creature
 from math import sqrt, pi
-from .vecteur import Vecteur
 from copy import copy
-from .physique import Articulation, Segment
+from .physique import Articulation, Segment, Vecteur
 from random import choice, uniform, randint
 from .noms import nomFrancais, pseudoNomLatin
 # Permet de connaître la génération d'une lignée
