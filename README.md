@@ -4,7 +4,7 @@ Algorithme génétique permettant de faire évoluer l'anatomie de créatures bid
 
 ![](./images/main.gif)
 
-Quelques exemples de créatures https://youtu.be/jIrU-AoiPvc (toutes nos vidéos sont non-référencées)
+Quelques exemples de créatures: https://youtu.be/jIrU-AoiPvc (toutes nos vidéos sont non-référencées)
 
 
 
