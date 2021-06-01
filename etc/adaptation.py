@@ -5,37 +5,35 @@ Teste l'aptitutde d'une créature à courir sur une distance importante en un te
 # On importe le moteur physique
 from . import physique
 from math import sqrt
+import pygame
 
-try:
-    import pygame
-    HAS_PYGAME = True
-except ImportError:
-    HAS_PYGAME = False
-
-def course(creature, largeur, hauteur, enable_graphics=False, simulation_time=1000):
+def course(creature, largeur, hauteur, activer_graphismes=False):
     # se base sur la vitesse à laquelle se déplace le centre de gravité de la créature pour mesurer sa performance
+    temps_de_simulation=1000
     creature['adaptee'] = 'course'
     # Centrer la créature et la faire toucher le sol
     if len(creature['lignee'].split('.')) == 1:
         creature.centreSol(hauteur)
     # Sélectionner son centre de gravité
-    start_x, start_y = creature.centreGravite()
-    if enable_graphics and HAS_PYGAME:
+    depart_x, depart_y = creature.centreGravite()
+    if activer_graphismes:
         tictac = 0
-        screen = pygame.display.get_surface()
+        ecran = pygame.display.get_surface()
     # Débuter la simulation
-    for i in range(simulation_time):
-        if enable_graphics and HAS_PYGAME:
-            creature.dessiner(screen, tictac, suivi_x=True, extrainfo="evolue pour la course")
+    for i in range(temps_de_simulation):
+        # Boucle itérative de la simulation
+        if activer_graphismes:
+            creature.dessiner(ecran, tictac)
             pygame.display.flip()   # Affichage
             tictac += 1
             for event in pygame.event.get():
                 if event.type == pygame.QUIT or \
                 (event.type == pygame.KEYDOWN and event.key == 27):
+                    # On quitte proprement
                     raise KeyboardInterrupt
-        creature.maj()
+        creature.maj() # On met à jour la créature
         creature.collisionMur(hauteur, physique.BAS)
     # Resélectionner son centre de masse
-    end_x, end_y = creature.centreGravite()
+    arrivee_x, arrivee_y = creature.centreGravite()
     # Retourne la distance parcourue
-    return abs(end_x - start_x)                                                           
+    return abs(arrivee_x - depart_x)                                                           

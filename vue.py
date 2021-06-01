@@ -28,15 +28,12 @@ if __name__ == "__main__":
     pygame.init()
     pygame.display.set_mode((LARGEUR,HAUTEUR),
             pygame.FULLSCREEN | pygame.DOUBLEBUF | pygame.HWSURFACE if options.fullscreen else pygame.DOUBLEBUF)
-    pygame.display.set_caption('Visualisateur de créatures')
-    pygame.mouse.set_visible(not options.fullscreen)
     screen = pygame.display.get_surface()
     try:
         se_deplace = True
         while se_deplace:
             for creature in espece:
                 # Centrer la créature horizontalement et la faire toucher le sol
-                extrainfo = " "
                 creature.centreSol(HAUTEUR)
                 # Contrôler les cycles
                 clock = pygame.time.Clock()
@@ -48,17 +45,14 @@ if __name__ == "__main__":
                                     (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                             se_deplace = False
                             break
-                        elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
-                            tictac = options.time
-                            break
-                        # mise en pause si on appuie sur espace
+                        # mise en pause si on appuie sur espace (pour nos captures d'écran du mémoire)
                         elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                             time.sleep(2000)
-                    creature.dessiner(screen, tictac=tictac, suivi_x=True, extrainfo=extrainfo)
+                    creature.dessiner(screen, tictac=tictac)
                     creature.maj()
                     col = creature.collisionMur(HAUTEUR, BAS)
-                    pygame.display.flip()   # Afficher la fenêtre
                     tictac += 1
+                    pygame.display.flip()   # Afficher la fenêtre
                     clock.tick(1000)        # Limiter la cadence d'image
                 if not se_deplace:
                     break

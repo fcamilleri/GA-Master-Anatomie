@@ -188,8 +188,9 @@ class Creature(object):
             articulation.pos.y -= (y2 - hauteur) + RAYON
             articulation.pos.x += cx
         return self
-    def dessiner(self, screen, tictac=None, suivi_x=False, suivi_y=False,
-            backgroundcolor=(20,10,0), montrerTexte=True, extrainfo=None):
+    def dessiner(self, screen, tictac=None,
+            backgroundcolor=(20,10,0), montrerTexte=True):
+        suivi_x=True
         # dessine la créature en utilisant le moteur Pygame
         if not HAS_PYGAME:
             raise exceptions.NotImplementedError("Module Pygame non trouvé. Veuillez l'installer.")
@@ -202,11 +203,7 @@ class Creature(object):
             cx = bxp*zm - (largeur//2)
         else:
             bxp = cx = -largeur//2
-        if suivi_y:
-            byp = (y2+y1)//2
-            cy = byp*zm - (hauteur//2)
-        else:
-            byp = cy = 0
+        byp = cy = 0
         if montrerTexte:
             font = pygame.font.Font(None, 20)    
         screen.fill((0,0,0))
@@ -241,7 +238,7 @@ class Creature(object):
         vely //= len(self.articulations)
         if montrerTexte:
             # Rendu du nom de la créature
-            texteNom = font.render("%s%s" % (self['name'], "" + extrainfo if extrainfo else "."), False, (200,200,200))           
+            texteNom = font.render("%s%s" % (self['name'], ""), False, (200,200,200))           
             screen.blit(texteNom, (100,100))
 try:
     import os, pygame
