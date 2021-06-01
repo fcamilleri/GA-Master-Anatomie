@@ -8,11 +8,11 @@ LARGEUR, HAUTEUR = 1080, 1080
 from etc.creature import sauvegarder_xml, charger_xml
 from etc.evoluer_creature import Evoluercreature
 from etc.noms import nomFrancais, pseudoNomLatin
-import sys, optparse
+import sys, optparse, time
 from etc import adaptation
 from random import sample
 from functools import cmp_to_key
-import time
+
 try:
     import pygame
 except: 
@@ -20,13 +20,12 @@ except:
     Execute l'algorithme génétique et sauvegarde les résultats toutes les n générations
     """
 def evolution_serialisee(espece, adaptation=adaptation.course, save_frequency=10000,
-        limite=-1,verbose=False, gfx=False, log=None, discard_fraction=0.6, random_include=0,
+        limite=-1,verbose=False, graphismes=False, 
         best=False, start_itration = 1, id='', timer=0,path="", index=0):
-    if log:
-        sys.stdout = open("./data/log/" + id + ".log", "w")
     itr = start_itration # Première itération
-    removed = int(len(espece)/2 * discard_fraction)
-    aleatoires = int(len(espece)/2 * random_include)
+    pression_selection=0.6 # En réalité il s'agit de 1 - la pression de sélection
+    retirees = int(len(espece)/2 * pression_selection)
+    aleatoires = 0
     espece = [Evoluercreature(creature) for creature in espece]
     try:
         while espece and itr != limite:
@@ -34,26 +33,26 @@ def evolution_serialisee(espece, adaptation=adaptation.course, save_frequency=10
             if verbose:
                 print("Iteration %d:" % (itr))
                 z = 1
-                lignee_len_sum = 0
+                somme_lignee = 0
             # Tester le niveau d'adaptation de la créature
             for specimen in espece:
-                specimen['adaptation'] = adaptation(specimen, LARGEUR, HAUTEUR, gfx)
+                specimen['adaptation'] = adaptation(specimen, LARGEUR, HAUTEUR, graphismes)
                 somme_adaptation += specimen['adaptation']
                 if verbose:
-                    output = "\t%d/%d: \"%s\"(%d) %.3f" % (z, len(espece), specimen['name'],specimen.generations(), specimen['adaptation'])
-                    print(output) 
+                    sortie_console = "\t%d/%d: \"%s\"(%d) %.3f" % (z, len(espece), specimen['name'],specimen.generations(), specimen['adaptation'])
+                    print(sortie_console) 
                     z += 1
-                    lignee_len_sum += specimen.generations()
+                    somme_lignee += specimen.generations()
             avg = somme_adaptation/float(len(espece))
             if verbose:
                 print("Moyenne d'adaptation: %.4f" % (avg))
             # On classe les individus en fonction de leur niveau d'adaptation
             espece = sorted(espece,key=cmp_to_key(lambda A,B: cmp(A['adaptation'], B['adaptation'])), reverse=True)
             # On supprime les moins bons
-            for specimen in sample(espece[len(espece)//2:], removed + aleatoires):
+            for specimen in sample(espece[len(espece)//2:], retirees + aleatoires):
                 espece.remove(specimen)
             # On clone et on mute ceux qui restent
-            for specimen in sample(espece, removed):
+            for specimen in sample(espece, retirees):
                 enfant = Evoluercreature(specimen).mutation()
                 enfant.nouvelleLignee(specimen)
                 names = enfant['name'].split()
@@ -100,16 +99,8 @@ def cmp(a, b):
 if __name__ == "__main__":
     # Lecture des paramètres de la ligne de commande
     analyseur = optparse.OptionParser(description="Starts a creatures evolution experiment.")
-    analyseur.add_option("-g", "--gfx", dest="gfx", default=False,
-            help="Activer les graphismes", action="store_true")
-    analyseur.add_option("-F", "--fullscreen", dest="fullscreen", default=False,
-            action="store_true", help="Plein écran")
-    analyseur.add_option("-L", "--log", dest="log", default=None,
-            help="Logger toutes les données pour du debugging", action="store_true")
     analyseur.add_option("-v", "--verbose", dest="verbose", default=False,
             help="Sortie bavarde", action="store_true")
-    analyseur.add_option("-b", "--best", dest="best", default=False,
-            help="Sauver le meilleur individu", action="store_true")
     analyseur.add_option("-s", "--save-freq", dest="save_frequency", default=200,
             help="Fréquence de sauvegarde", metavar="NUMBER")
     analyseur.add_option("-l", "--limite", dest="limite", default=-1,
@@ -128,23 +119,21 @@ if __name__ == "__main__":
     options.start_at = int(options.start_at)
     options.id = options.id if options.id is not None else pseudoNomLatin(4).lower()
     if len(args) == 0:
-        readfile = sys.stdin
+        lecture_fichier = sys.stdin
     else:
-        readfile = args[0]   
-    if options.verbose: print("# %s experiment." % options.id)
+        lecture_fichier = args[0]   
+    if options.verbose: print("# Expérience %s " % options.id)
     # lire l'espèce initiale
-    init_espece = charger_xml(readfile)
+    init_espece = charger_xml(lecture_fichier)
     # Si les graphismes sont activés, activer Pygame
-    if options.gfx:
+    if options.graphismes:
         pygame.init()
         pygame.display.set_mode((LARGEUR,HAUTEUR),
         pygame.FULLSCREEN | pygame.DOUBLEBUF | pygame.HWSURFACE if options.fullscreen else pygame.DOUBLEBUF)
-        pygame.display.set_caption("Evolving creature for %s" % (options.adaptation))
+        pygame.display.set_caption("Evolution de la créature pour %s" % (options.adaptation))
         pygame.mouse.set_visible(not options.fullscreen)
     # Débuter la simulation
     evolution_serialisee(init_espece, adaptation, save_frequency=options.save_frequency,
-            limite=options.limite,
-            verbose=options.verbose, gfx=options.gfx,
-            best=options.best, start_itration=options.start_at, id=options.id, timer=int(options.timer), log = options.log)
-    if options.gfx:
+            limite=options.limite, verbose=options.verbose,start_itration=options.start_at, id=options.id, timer=int(options.timer))
+    if options.graphismes:
         pygame.quit()

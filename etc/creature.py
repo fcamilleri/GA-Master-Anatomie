@@ -9,7 +9,7 @@ import xml.dom.minidom
 from xml.parsers.expat import ExpatError
 from math import sqrt, pi, fabs
 def aVirgule(s):
-    # teste si la variable est à virgule flottante
+    # teste si une variable est à virgule flottante
     if s.isdigit() or s == '.': return False
     spl = s.split('.')
     if len(spl) > 2: return False
@@ -79,7 +79,7 @@ class Creature(object):
         self.__init__(charger_xml(file, limite=1)[0])
         return self
     def sauvegarderXML(self, file=sys.stdout):
-        # Sauve la créature sous forme de XML
+        # Sauve la créature donnée sous forme de XML
         sauvegarder_xml([self], file)
     def collision(self, autre, rayon=RAYON):
         for articulation in self.articulations:
@@ -168,14 +168,14 @@ class Creature(object):
         return toutesArticulations
     def retirerFlottantes(self):
         #retirer toutes les articulations non connectées
-        uncon_articulations = self.flottantes()
-        for articulation in uncon_articulations:
+        articulations_deconnectees = self.flottantes()
+        for articulation in articulations_deconnectees:
             self.articulations.remove(articulation)
-        uncon_segments = []
+        segments_deconnectes = []
         for segment in self.segments:
-            if segment.a in uncon_articulations or segment.b in uncon_articulations:
-                uncon_segments.append(segment)
-        for segment in uncon_segments:
+            if segment.a in articulations_deconnectees or segment.b in articulations_deconnectees:
+                segments_deconnectes.append(segment)
+        for segment in segments_deconnectes:
             self.segments.remove(segment)
     def __repr__(self):
         return "<Creature %s: %d articulations, %d segments>" % (self['name'], len(self.articulations), len(self.segments))
@@ -188,69 +188,66 @@ class Creature(object):
             articulation.pos.y -= (y2 - hauteur) + RAYON
             articulation.pos.x += cx
         return self
-    def dessiner(self, screen, tictac=None,
+    def dessiner(self, ecran, tictac=None,
             backgroundcolor=(20,10,0), montrerTexte=True):
         suivi_x=True
         # dessine la créature en utilisant le moteur Pygame
-        if not HAS_PYGAME:
+        if not A_GRAPHISMES:
             raise exceptions.NotImplementedError("Module Pygame non trouvé. Veuillez l'installer.")
         # Obtenir la position centrale
+        largeur, hauteur = ecran.get_size()
         x1, y1, x2, y2 = self.boiteContours()
-        largeur, hauteur = screen.get_size()
         zm = min(min(largeur//((x2-x1)+50.0), hauteur//((y2-y1)+50.0)), 1.0)
         if suivi_x:
             bxp = (x2+x1)//2
             cx = bxp*zm - (largeur//2)
-        else:
-            bxp = cx = -largeur//2
         byp = cy = 0
         if montrerTexte:
             font = pygame.font.Font(None, 20)    
-        screen.fill((0,0,0))
+        ecran.fill((0,0,0))
         taille_x, taille_y = largeur//10, hauteur//10
         for x in range(0,largeur+100,taille_x):
             for y in range(0,hauteur+100,taille_y):
-                pygame.draw.rect(screen, backgroundcolor,
+                pygame.draw.rect(ecran, backgroundcolor,
                                  (int(x - bxp) % (taille_x+largeur) - taille_x, int(y - byp) % (taille_y+hauteur) - taille_y,
                                   taille_x-10,taille_y-10))               
         # Montrer l'arrière plan
-        screen.blit(bg, (int(x - bxp) % (largeur+taille_x) - taille_x - bgSize[0], 0))
-        screen.blit(bg, (int(x - bxp) % (largeur+taille_x) - taille_x, 0))
+        ecran.blit(bg, (int(x - bxp) % (largeur+taille_x) - taille_x - bgSize[0], 0))
+        ecran.blit(bg, (int(x - bxp) % (largeur+taille_x) - taille_x, 0))
         # Dessiner les segments
         for segment in self.segments:
             length = (segment.a.pos - segment.b.pos).length()
             facteur = (length - segment.normal)/length if length > 0 else 0
-            if facteur <= 0:
-                color = (255, 255-min(int(-facteur * 255), 255), 255-min(int(-facteur * 255), 255))
-            elif facteur > 0:
+            if facteur > 0:
                 color = (255-min(int(facteur * 255), 255), 255, 255-min(int(facteur * 255), 255))
-            pygame.draw.line(screen, color, (segment.a.pos.x*zm - cx, segment.a.pos.y*zm - cy),
+            elif facteur <= 0:
+                color = (255, 255-min(int(-facteur * 255), 255), 255-min(int(-facteur * 255), 255))
+            pygame.draw.line(ecran, color, (segment.a.pos.x*zm - cx, segment.a.pos.y*zm - cy),
                     (segment.b.pos.x*zm - cx, segment.b.pos.y*zm - cy), int(8*zm))
         # Dessiner les articulations
         velx, vely = 0, 0
         for articulation in self.articulations:
             velx += articulation.vel.x
             vely += articulation.vel.y
-            #pygame.draw.circle(screen, (0,0,0), (int(articulation.pos.x*zm - cx), int(articulation.pos.y*zm - cy)), int(RAYON*zm), 0)
-            pygame.draw.circle(screen, (160,40,80), (int(articulation.pos.x*zm - cx), int(articulation.pos.y*zm - cy)),
+            #pygame.draw.circle(ecran, (0,0,0), (int(articulation.pos.x*zm - cx), int(articulation.pos.y*zm - cy)), int(RAYON*zm), 0)
+            pygame.draw.circle(ecran, (160,40,80), (int(articulation.pos.x*zm - cx), int(articulation.pos.y*zm - cy)),
                                int(RAYON*zm), int(8*zm))
         velx //= len(self.articulations)
         vely //= len(self.articulations)
         if montrerTexte:
             # Rendu du nom de la créature
             texteNom = font.render("%s%s" % (self['name'], ""), False, (200,200,200))           
-            screen.blit(texteNom, (100,100))
+            ecran.blit(texteNom, (100,100))
 try:
     import os, pygame
     os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
-    HAS_PYGAME = True
-    # charger le fond d'écran une fois
+    A_GRAPHISMES = True
+    # charger le fond d'écran une seule fois.
     bg = pygame.image.load('images/parking_externes_CBRS.jpg')
     bgSize = bg.get_rect().size
 except ImportError:
-    HAS_PYGAME = False
-def sauvegarder_xml(creatures, fichierSortie=sys.stdout):
-    # écrit la créature dans un fichier 
+    A_GRAPHISMES = False
+def sauvegarder_xml(creatures, fichierSortie=sys.stdout): # écrit le génome d'une créature sous forme de XML
     fermerFichierSortie = (type(fichierSortie) is str)
     if fermerFichierSortie:
         fichierSortie = open(fichierSortie, 'w', encoding='utf-8')
@@ -277,8 +274,7 @@ def sauvegarder_xml(creatures, fichierSortie=sys.stdout):
         fichierSortie.close()
     else:
         fichierSortie.flush()
-def charger_xml(arq=sys.stdin, limite=None):
-    # lit un ficher et le transforme en créature
+def charger_xml(arq=sys.stdin, limite=None):# lit un ficher XML et le transforme en créature
     try:
         doc = xml.dom.minidom.parse(arq)
     except ExpatError:

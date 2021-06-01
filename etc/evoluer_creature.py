@@ -4,7 +4,7 @@
 """
 Module qui permet l'évolution d'une créature. Implémente des opérateurs génétiques comme la mutation 
 """
-
+# On importe les bibliothèques
 from .creature import Creature
 from math import sqrt, pi
 from copy import copy
@@ -39,14 +39,14 @@ class Evoluercreature(Creature):
         # Mute une structure de la créature, ce qui peut correspondre à: rajouter ou retirer un segment ou une articulation, modifier un segment ou modifier la position d'un noeud.
         if len(self.articulations) == 0:
             return
-        mut = choice(list(range(6)))
-        if mut == 0: # Ajouter une articulation
+        mut = choice(list(range(10,16))) # c'est ici que ça se fait par hasard
+        if mut == 10: # Ajouter une articulation
             neigh = choice(self.articulations)
             newarticulation = Articulation(pos=(neigh.pos.x + uniform(-newarticulationdist, newarticulationdist),
                             neigh.pos.y + uniform(-newarticulationdist, newarticulationdist)))
             self.add(newarticulation)       # Nouvelle articulation
             self.add(Segment(neigh, newarticulation, decalage=uniform(0,pi*2))) # Nouveau segment
-        elif mut == 1 and len(self.articulations) > 1: # Retirer une articulation
+        elif mut == 11 and len(self.articulations) > 1: # Retirer une articulation
             # Créer une copie de la créature
             copie = Creature()
             copie.articulations = copy(self.articulations)
@@ -61,14 +61,14 @@ class Evoluercreature(Creature):
                     if articulation.id == toremove.id:
                         self.remove(articulation)
                         break
-        elif mut == 2 and len(self.articulations) > 1: # Rajouter un segment
+        elif mut == 12 and len(self.articulations) > 1: # Rajouter un segment
             a = choice(self.articulations)
             b = choice(self.articulations)
             # Choisir le segment
             while a is b:
                 b = choice(self.articulations)
             self.add(Segment(a, b, decalage=uniform(0,pi*2)))   # Ajouter le segment
-        elif mut == 3 and len(self.segments) > 0: # Retirer un segment
+        elif mut == 13 and len(self.segments) > 0: # Retirer un segment
             # Selectionner segment
             toremove = choice(self.segments)
             # Retirer le segment
@@ -76,14 +76,14 @@ class Evoluercreature(Creature):
             if self.flottantes():
                 # verifier que le segment lie bien deux articulations qui existent.
                 self.add(toremove)
-        elif mut == 4 and len(self.segments) > 0: # Modifier les propriétés d'un segment
+        elif mut == 14 and len(self.segments) > 0: # Modifier les propriétés d'un segment
             segment = choice(self.segments)
             if choice([1, 2]) == 1:
                 segment.decalage = max(segment.decalage + uniform(-pi, pi), 0)
             else:
                 added = uniform(-0.5, 0.5)
                 segment.amplitude = segment.amplitude + added if abs(segment.amplitude + added) <= 0.5 else segment.amplitude
-        elif mut == 5: # Modifier la position d'un noeud
+        elif mut == 15: # Modifier la position d'un noeud
             articulation = choice(self.articulations)
             articulation.pos.x += uniform(-articulationvariation,articulationvariation)
             articulation.pos.y += uniform(-articulationvariation,articulationvariation)

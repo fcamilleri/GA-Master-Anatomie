@@ -9,11 +9,11 @@ from random import randrange
 import io
     
 def nomFrancais(opt):        
-    if opt == 0:
+    if opt == 0: # Option 0 correspond à un prénom
        prenoms = open("./etc/dictionnaire_prenoms.txt", 'r', encoding='utf-8').readlines()
        pN = len(prenoms)
        return prenoms[randrange(pN)].strip("\n")
-    else:
+    else: # Option 1 correspond à un nom de famille
        noms = open("./etc/dictionnaire_noms.txt", 'r', encoding='utf-8').readlines()
        nN = len(noms)
        return noms[randrange(nN)].strip("\n").upper()

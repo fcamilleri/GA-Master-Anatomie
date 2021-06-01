@@ -21,8 +21,8 @@ rad = 125 #     diamètre maximal des créatures
 def evolveWorker(data):
     init_espece = charger_xml(data[0])
     return evolution.evolution_serialisee(init_espece, data[2],
-            verbose=data[3], gfx=False,
-            best=data[4],id=data[1], timer=int(data[5]), log = data[6], path=data[7]+"/", index=data[8])
+            verbose=data[3], graphismes=False,
+            best=data[4],id=data[1], timer=int(data[5]), path=data[6]+"/", index=data[7])
 # Génération d'un identifiant unique pour une nouvelle espèce (aléatoire)
 def getSeed(name,generation,idx):
     return "./data/"+str(name)+"/"+str(generation)+"-"+str(idx)+".xml"
@@ -38,8 +38,6 @@ if __name__ == "__main__":
             help="sauver le meilleur de chaque génération", action="store_true")
     analyseur.add_option("-t", "--timer", dest="timer", default=t,
             help="instaure une limite de temps", metavar="TIME")
-    analyseur.add_option("-L", "--log", dest="log", default=None,
-            help="Sauve toutes les données dans un fichier pour du débugging", action="store_true")
     (options, args) = analyseur.parse_args()
     adaptation = adaptation.__dict__["course"]
     ExpName = pseudoNomLatin(4)
@@ -57,7 +55,7 @@ if __name__ == "__main__":
             #if gen >= 2:
             #    os.remove(getSeed(ExpName,gen-2,index))
             initPop = charger_xml(seed)
-            x = (seed,str(gen+1) + "-" + index,adaptation,options.verbose,options.best,options.timer,options.log,ExpName,index)
+            x = (seed,str(gen+1) + "-" + index,adaptation,options.verbose,options.best,options.timer,ExpName,index)
             inputs.append(x) 
         with mp.Pool(n) as pool:
             results = pool.map(evolveWorker, inputs)

@@ -19,16 +19,16 @@ if __name__ == "__main__":
             help="Temps de simulation de chaque créature")
     (options, args) = analyseur.parse_args()
     if len(args) == 0:
-        readfile = sys.stdin
+        lecture_fichier = sys.stdin
     else:
-        readfile = args[0]
+        lecture_fichier = args[0]
     options.time = int(options.time)
     # Charger la populaiton depuis le fichier
-    espece = charger_xml(readfile)
+    espece = charger_xml(lecture_fichier)
     pygame.init()
     pygame.display.set_mode((LARGEUR,HAUTEUR),
             pygame.FULLSCREEN | pygame.DOUBLEBUF | pygame.HWSURFACE if options.fullscreen else pygame.DOUBLEBUF)
-    screen = pygame.display.get_surface()
+    ecran = pygame.display.get_surface()
     try:
         se_deplace = True
         while se_deplace:
@@ -48,7 +48,7 @@ if __name__ == "__main__":
                         # mise en pause si on appuie sur espace (pour nos captures d'écran du mémoire)
                         elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                             time.sleep(2000)
-                    creature.dessiner(screen, tictac=tictac)
+                    creature.dessiner(ecran, tictac=tictac)
                     creature.maj()
                     col = creature.collisionMur(HAUTEUR, BAS)
                     tictac += 1
