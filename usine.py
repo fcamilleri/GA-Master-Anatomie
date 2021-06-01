@@ -22,7 +22,7 @@ def evolveWorker(data):
     init_espece = charger_xml(data[0])
     return evolution.evolution_serialisee(init_espece, data[2],
             verbose=data[3], graphismes=False,
-            best=data[4],id=data[1], timer=int(data[5]), path=data[6]+"/", index=data[7])
+            meilleur=data[4],id=data[1], timer=int(data[5]), path=data[6]+"/", index=data[7])
 # Génération d'un identifiant unique pour une nouvelle espèce (aléatoire)
 def getSeed(name,generation,idx):
     return "./data/"+str(name)+"/"+str(generation)+"-"+str(idx)+".xml"
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     analyseur = optparse.OptionParser(description="Permet de créer un grand nombre de créatures pour le mémoire")
     analyseur.add_option("-v", "--verbose", dest="verbose", default=False,
             help="Sortie bavarde", action="store_true")
-    analyseur.add_option("-b", "--best", dest="best", default=False,
+    analyseur.add_option("-b", "--meilleur", dest="meilleur", default=False,
             help="sauver le meilleur de chaque génération", action="store_true")
     analyseur.add_option("-t", "--timer", dest="timer", default=t,
             help="instaure une limite de temps", metavar="TIME")
@@ -55,7 +55,7 @@ if __name__ == "__main__":
             #if gen >= 2:
             #    os.remove(getSeed(ExpName,gen-2,index))
             initPop = charger_xml(seed)
-            x = (seed,str(gen+1) + "-" + index,adaptation,options.verbose,options.best,options.timer,ExpName,index)
+            x = (seed,str(gen+1) + "-" + index,adaptation,options.verbose,options.meilleur,options.timer,ExpName,index)
             inputs.append(x) 
         with mp.Pool(n) as pool:
             results = pool.map(evolveWorker, inputs)

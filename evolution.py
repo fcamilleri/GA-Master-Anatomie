@@ -21,7 +21,7 @@ except:
     """
 def evolution_serialisee(espece, adaptation=adaptation.course, save_frequency=10000,
         limite=-1,verbose=False, graphismes=False, 
-        best=False, start_itration = 1, id='', timer=0,path="", index=0):
+        meilleur=False, start_itration = 1, id='', timer=0,path="", index=0):
     itr = start_itration # Première itération
     pression_selection=0.6 # En réalité il s'agit de 1 - la pression de sélection
     retirees = int(len(espece)/2 * pression_selection)
@@ -72,8 +72,8 @@ def evolution_serialisee(espece, adaptation=adaptation.course, save_frequency=10
                 if verbose:
                     print("# itération %d sauvegardée dans %s" % (itr, filename))
             # On sauvegarde le meilleur individu si spécifié
-            if best:
-                filename = "./data/"+path+"%s-best.xml" % (id)
+            if meilleur:
+                filename = "./data/"+path+"%s-meilleur.xml" % (id)
                 sauvegarder_xml(espece[:1], filename)
             itr += 1    
             # En cas de timeout (pour l'usine à créatures)
@@ -98,7 +98,7 @@ def cmp(a, b):
 
 if __name__ == "__main__":
     # Lecture des paramètres de la ligne de commande
-    analyseur = optparse.OptionParser(description="Starts a creatures evolution experiment.")
+    analyseur = optparse.OptionParser(description="Débute un processus évolutif.")
     analyseur.add_option("-v", "--verbose", dest="verbose", default=False,
             help="Sortie bavarde", action="store_true")
     analyseur.add_option("-s", "--save-freq", dest="save_frequency", default=200,
