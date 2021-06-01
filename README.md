@@ -4,7 +4,7 @@ Algorithme génétique permettant de faire évoluer l'anatomie de créatures bid
 
 ![](./images/main.gif)
 
-https://youtu.be/jIrU-AoiPvc (toutes nos vidéos sont non-référencées)
+Quelques exemples de créatures https://youtu.be/jIrU-AoiPvc (toutes nos vidéos sont non-référencées)
 
 
 
@@ -25,4 +25,4 @@ $ python ./evolution.py randompop.xml -v -id outputpop
 $ python ./vue.py ./data/outputpop.xml -t 1000
 ```
 
-Tutoriel vidéo: https://youtu.be/Kt2dmJf2BBQ
+Tutoriel vidéo préparé par nos soins: https://youtu.be/Kt2dmJf2BBQ
