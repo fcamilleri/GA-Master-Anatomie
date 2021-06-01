@@ -14,6 +14,8 @@ Quelques exemples de créatures https://youtu.be/jIrU-AoiPvc (toutes nos vidéos
 
 ## Exemple d'usage
 
+Exemple d'usage en vidéo: https://youtu.be/Kt2dmJf2BBQ
+
 ```
 #Générer une population aléatoire standard de 100 individus et la stocker dans randompop.xml
 $ python ./pop_aleatoire.py  randompop.xml -p 100
@@ -25,4 +27,3 @@ $ python ./evolution.py randompop.xml -v -id outputpop
 $ python ./vue.py ./data/outputpop.xml -t 1000
 ```
 
-Tutoriel vidéo préparé par nos soins: https://youtu.be/Kt2dmJf2BBQ
