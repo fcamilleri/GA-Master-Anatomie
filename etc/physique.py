@@ -20,6 +20,7 @@ HAUT = 1
 BAS = 2
 GAUCHE = 3
 DROITE = 4
+
 class Articulation(object):
     """
     Une articulation est une masse ponctuelle qui est soumise à la pesanteur et à la résistance de l'air. Elle est définie par une position, une vélocité et peut 
@@ -35,22 +36,7 @@ class Articulation(object):
         # provoque une collision avec un mur si possible, code redondant mais qui fait le job
         global HAUT, BAS, GAUCHE, DROITE
         force_collision = 0
-        if cote == GAUCHE and self.pos.x < limite + rayon:
-            self.pos.x = limite + rayon
-            self.vel.x = self.vel.x * - atr_normal if abs(self.vel.x * - atr_normal) > min_vel else 0.0
-            self.vel.y *= atr_surface
-            force_collision = abs(self.vel.x)
-        elif cote == DROITE and self.pos.x > limite - rayon:
-            self.pos.x = limite - rayon
-            self.vel.x = self.vel.x * - atr_normal if abs(self.vel.x * - atr_normal) > min_vel else 0.0
-            self.vel.y *= atr_surface
-            force_collision = abs(self.vel.x)
-        if cote == HAUT and self.pos.y < limite + rayon:
-            self.pos.y = limite + rayon
-            self.vel.x *= atr_surface
-            self.vel.y = self.vel.y * - atr_normal if abs(self.vel.y * - atr_normal) > min_vel else 0.0
-            force_collision = abs(self.vel.y)
-        elif cote == BAS and self.pos.y > limite - rayon:
+        if cote == BAS and self.pos.y > limite - rayon:
             self.pos.y = limite - rayon
             self.vel.x *= atr_surface
             self.vel.y = self.vel.y * - atr_normal if abs(self.vel.y * - atr_normal) > min_vel else 0.0
@@ -89,6 +75,9 @@ def _est_numerique(obj):
         return True
     else:
         return False
+        
+        
+        
 class Segment(object):
     """
     Un segment est une poutre hybride qui connecte des articulations, et ne peut exister que s'il lie deux articulations. 
@@ -123,6 +112,8 @@ if __name__ == '__main__':
 Ci-dessous se trouve la classe Vecteur, pour les opérations vectorielles concernant la position, vélocité et accélération.
 Une partie de ces fonctions est inspirée d'internet.
 """
+
+
 class Vecteur(object):
     def __init__(self, a=0, b=0 ):
         # permet de créer un nouveau vecteur
