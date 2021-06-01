@@ -16,10 +16,8 @@ RAYON = 8
 # Longueur maximale d'un segment
 NORME_MAX = 400.0
 # Code pour orientation:
-HAUT = 1
 BAS = 2
-GAUCHE = 3
-DROITE = 4
+
 
 class Articulation(object):
     """
@@ -41,8 +39,8 @@ class Articulation(object):
             self.vel.x *= atr_surface
             self.vel.y = self.vel.y * - atr_normal if abs(self.vel.y * - atr_normal) > min_vel else 0.0
             force_collision = abs(self.vel.y)
-        elif cote not in [HAUT, GAUCHE, DROITE, BAS]:
-            raise ValueError("côté doit être HAUT, GAUCHE, DROITE ou BAS.")
+        elif cote not in [BAS]:
+            raise ValueError("côté invalide")
         return force_collision        
     def maj(self, atr=0.01, grav=PESANTEUR, elast=0.6):
         # Met à jour l'articulation: modifie sa position sur la base de sa vélocité et sa vélocité sur la base de son accélération.
