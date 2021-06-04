@@ -14,7 +14,6 @@ Quelques exemples de créatures: https://youtu.be/jIrU-AoiPvc (toutes nos vidéo
 
 ## Exemple d'usage
 
-Exemple d'usage en vidéo: https://youtu.be/Kt2dmJf2BBQ
 
 ```
 #Générer une population aléatoire standard de 100 individus et la stocker dans randompop.xml
